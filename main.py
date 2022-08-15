@@ -26,7 +26,6 @@ def createParser():
 def main():
     parser = createParser()
     namespace = parser.parse_args(sys.argv[1:])
-
     #if len(sys.argv) == 1:
     #    print('not enough parameters -h help')
     #if len(sys.argv) > 8:
@@ -37,10 +36,10 @@ def main():
     #          '-u --user_id [vk user_id] \n'
     #          '-f --format [format file] csv(default) tsv json \n'
     #          '-p --path [path file save]')
-    v = vkaip.Vkapi(user_id=ID, token=TOKEN)
+    v = vkaip.Vkapi(user_id=namespace.user_id, token=namespace.token)
     r1 = v.get_friends()
-    writer = WriterCsvTsv(delimiter='\n')
-    writer.write(file_name='report', data=r1)
+    #writer = WriterCsvTsv(delimiter='\n')
+    #writer.write(file_name='report', data=r1)
 
 
 if __name__ == '__main__':
