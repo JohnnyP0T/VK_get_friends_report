@@ -3,11 +3,12 @@ import sys
 
 from vk_report.parse_friends import *
 
+
 """Класс для работы с api vk.
 
 """
 class Vkapi:
-    def __init__(self,  user_id:int, token:str):
+    def __init__(self, user_id: int, token: str):
         self.token = token
         self.user_id = user_id
 

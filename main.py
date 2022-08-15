@@ -5,7 +5,8 @@ from vk_report import vkaip
 from writer.csv_tsv_writer import WriterCsvTsv
 from writer.json_writer import WriterJson
 
-def createParser() -> argparse.ArgumentParser:
+
+def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog='VK_get_friends_report',
         description='Improvado Back-end test task for Junior',
@@ -20,7 +21,7 @@ def createParser() -> argparse.ArgumentParser:
 
 
 def main():
-    parser = createParser()
+    parser = create_parser()
     namespace = parser.parse_args(sys.argv[1:])
     print('receiving data')
     vk = vkaip.Vkapi(user_id=namespace.user_id, token=namespace.token)
