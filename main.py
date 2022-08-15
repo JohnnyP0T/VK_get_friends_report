@@ -1,5 +1,6 @@
 import sys
 import argparse
+import time
 
 from vk_report import vkaip
 from writer.csv_tsv_writer import WriterCsvTsv

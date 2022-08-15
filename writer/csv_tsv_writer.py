@@ -1,9 +1,6 @@
 import csv
 
 
-"""Сохранение данных в csv или tsv файл.
-
-"""
 class WriterCsvTsv:
     def __init__(self, delimiter: str = ','):
         self.delimiter = delimiter

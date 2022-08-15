@@ -1,9 +1,6 @@
 import json
 
 
-"""Сохранение данных в json файл.
-
-"""
 class WriterJson():
     def __init__(self, indent: int = 4):
         self.indent = indent

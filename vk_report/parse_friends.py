@@ -2,9 +2,6 @@ import datetime
 
 
 def parse_friends(items:dict) -> list:
-    """Парсинг данных друзей полученных из vk api.
-
-    """
     person_list = []
     for i in items:
         person_temp = dict()
