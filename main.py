@@ -3,13 +3,9 @@ import argparse
 
 from vk_report import vkaip
 from writer.csv_tsv_writer import WriterCsvTsv
+from writer.json_writer import WriterJson
 
-# debug
-
-
-
-
-def createParser():
+def createParser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog='VK_get_friends_report',
         description='Improvado Back-end test task for Junior',
@@ -26,20 +22,23 @@ def createParser():
 def main():
     parser = createParser()
     namespace = parser.parse_args(sys.argv[1:])
-    #if len(sys.argv) == 1:
-    #    print('not enough parameters -h help')
-    #if len(sys.argv) > 8:
-    #    print()
-    #if (sys.argv[1] == '-h' or
-    #        sys.argv[1] == '-help'):
-    #    print('-t --token [access token vk] \n'
-    #          '-u --user_id [vk user_id] \n'
-    #          '-f --format [format file] csv(default) tsv json \n'
-    #          '-p --path [path file save]')
-    v = vkaip.Vkapi(user_id=namespace.user_id, token=namespace.token)
-    r1 = v.get_friends()
-    #writer = WriterCsvTsv(delimiter='\n')
-    #writer.write(file_name='report', data=r1)
+    print('receiving data')
+    vk = vkaip.Vkapi(user_id=namespace.user_id, token=namespace.token)
+    data = vk.get_friends()
+    data.sort(key=lambda x: x['first_name'])
+    print('data received')
+    if namespace.format == 'csv':
+        writer = WriterCsvTsv()
+        writer.write(file_name='report.csv', data=data)
+    elif namespace.format == 'tsv':
+        writer = WriterCsvTsv('\t')
+        writer.write(file_name='report.tsv', data=data)
+    elif namespace.format == 'json':
+        writer = WriterJson(4)
+        writer.write(file_name='report.json', data=data)
+    else:
+        print('unknown error')
+    print('report recorded')
 
 
 if __name__ == '__main__':

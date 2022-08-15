@@ -2,9 +2,11 @@
 import datetime
 
 
-def parse_friends(items):
+def parse_friends(items:dict) -> list:
+    """Парсинг данных друзей полученных из vk api.
+
+    """
     person_list = []
-    print(items)
     for i in items:
         person_temp = dict()
         person_temp['first_name'] = i.get('first_name')
@@ -27,11 +29,11 @@ def parse_friends(items):
             person_temp['birth_date'] = 'unknown'
         if i.get('sex') == 1:
             person_temp['sex'] = 'female'
-        else:
+        elif i.get('sex') == 2:
             person_temp['sex'] = 'male'
+        else:
+            person_temp['sex'] = 'unknown'
 
         person_list.append(person_temp)
-    for i in person_list:
-        print(i)
     return person_list
 

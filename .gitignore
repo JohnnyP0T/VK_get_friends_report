@@ -1,6 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
 # Byte-compiled / optimized / DLL files
+reports
+report.csv
+report.tsv
+report.json
 __pycache__/
 *.py[cod]
 *$py.class
