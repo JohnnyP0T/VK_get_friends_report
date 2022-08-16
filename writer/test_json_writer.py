@@ -9,24 +9,24 @@ class JsonTestCase(unittest.TestCase):
         self.file_name_test = f'{os.getcwd()}/tests_data/report_test.json'
         self.file_name_test_sample = f'{os.getcwd()}/tests_sample/report_test_sample.json'
 
-        self.data_test =[
-                            {
-                                'first_name':'Alexander',
-                                'last_name':'Potlog',
-                                'country':'Russia',
-                                'city':'Tomsk',
-                                'birth_date':'1900-01-31T00:00:00',
-                                'sex':'male'
-                            },
-                            {
-                                'first_name':'Ivan',
-                                'last_name':'Ivanovich',
-                                'country':'America',
-                                'city':'New York',
-                                'birth_date':'1900-09-17T00:00:00',
-                                'sex':'male'
-                            }
-                        ]
+        self.data_test = [
+            {
+                'first_name': 'Alexander',
+                'last_name': 'Potlog',
+                'country': 'Russia',
+                'city': 'Tomsk',
+                'birth_date': '1900-01-31T00:00:00',
+                'sex': 'male'
+            },
+            {
+                'first_name': 'Ivan',
+                'last_name': 'Ivanovich',
+                'country': 'America',
+                'city': 'New York',
+                'birth_date': '1900-09-17T00:00:00',
+                'sex': 'male'
+            }
+        ]
         if not os.path.exists('tests_data'):
             os.mkdir('tests_data')
         if os.path.isfile(self.file_name_test):
@@ -39,7 +39,7 @@ class JsonTestCase(unittest.TestCase):
         # Act
         writer_test.write(file_name=self.file_name_test, data=self.data_test)
 
-        #Assert
+        # Assert
         self.assertTrue(os.path.isfile(self.file_name_test))
 
     def test_save_correct_data(self) -> None:
@@ -49,9 +49,9 @@ class JsonTestCase(unittest.TestCase):
         # Act
         writer_test.write(file_name=self.file_name_test, data=self.data_test)
 
-        #Assert
+        # Assert
         with open(self.file_name_test, 'r') as file:
             data_actual = file.read()
         with open(self.file_name_test_sample, 'r') as file:
-            data_expected  = file.read()
+            data_expected = file.read()
         self.assertEqual(data_actual, data_expected)
