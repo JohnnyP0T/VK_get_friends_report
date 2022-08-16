@@ -1,7 +1,7 @@
 import datetime
 
 
-def parse_friends(items:dict) -> list:
+def parse_friends(items:list) -> list:
     person_list = []
     for i in items:
         person_temp = dict()

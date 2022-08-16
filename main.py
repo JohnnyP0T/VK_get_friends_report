@@ -16,7 +16,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument('-t', '--token', required=True, help='access token vk')
     parser.add_argument('-u', '--user_id', type=int, required=True, help='vk user_id')
     parser.add_argument('-f', '--format', choices=['csv', 'tsv', 'json'], default='csv', help='format file')
-    parser.add_argument('-p', '--path', default='reports', help='path file save')
+    parser.add_argument('-p', '--path', default='report', help='path file save no extension')
 
     return parser
 
@@ -31,13 +31,13 @@ def main():
     print('data received')
     if namespace.format == 'csv':
         writer = WriterCsvTsv()
-        writer.write(file_name='report.csv', data=data)
+        writer.write(file_name=f'{namespace.path}.csv', data=data)
     elif namespace.format == 'tsv':
         writer = WriterCsvTsv('\t')
-        writer.write(file_name='report.tsv', data=data)
+        writer.write(file_name=f'{namespace.path}.tsv', data=data)
     elif namespace.format == 'json':
         writer = WriterJson(4)
-        writer.write(file_name='report.json', data=data)
+        writer.write(file_name=f'{namespace.path}.json', data=data)
     else:
         print('unknown error')
     print('report recorded')

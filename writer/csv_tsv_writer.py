@@ -5,7 +5,7 @@ class WriterCsvTsv:
     def __init__(self, delimiter: str = ','):
         self.delimiter = delimiter
 
-    def write(self, file_name: str, data):
+    def write(self, file_name:str, data:list) -> None:
         with open(file_name, 'w', encoding='utf-8') as file:
             fieldnames = ['first_name', 'last_name', 'country', 'city', 'birth_date', 'sex']
 
