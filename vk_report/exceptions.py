@@ -1,0 +1,2 @@
+class VkApiException(Exception):
+    pass
