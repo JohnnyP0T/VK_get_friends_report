@@ -1,17 +1,32 @@
 import sys
+import argparse
 
+from vk_report.vk_api import VkApi
+from vk_report.friends_report import FriendsReport
+from writer.csv_tsv_writer import WriterCsvTsv
+from writer.json_writer import WriterJson
 
-from src.vk_report.vk_api import Vkapi
-from src.writer.csv_tsv_writer import WriterCsvTsv
-from src.writer.json_writer import WriterJson
-from src.console_args_parser.parser_args import parse_arg
+def create_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog='VK_get_friends_report',
+        description='Improvado Back-end test task for Junior',
+        epilog='2022'
+    )
+    parser.add_argument('-t', '--token', required=True, help='access token vk')
+    parser.add_argument('-u', '--user_id', type=int, required=True, help='vk user_id')
+    parser.add_argument('-f', '--format', choices=['csv', 'tsv', 'json'], default='csv', help='format file')
+    parser.add_argument('-p', '--path', default='report', help='path file save no extension')
 
+    return parser
 
 def main():
-    namespace = parse_arg(sys.argv[1:])
-    print('receiving data')
-    vk = Vkapi(user_id=namespace.user_id, token=namespace.token)
-    data = vk.get_friends()
+    version = '5.131'
+    parser = create_parser()
+    namespace = parser.parse_args(sys.argv[1:])
+    print('receiving data') 
+    vk = VkApi(token=namespace.token, version=version)
+    report = FriendsReport(api=vk)
+    data = report.get_data(user_id=namespace.user_id)
     data.sort(key=lambda x: x['first_name'])
     print('data received')
     if namespace.format == 'csv':
