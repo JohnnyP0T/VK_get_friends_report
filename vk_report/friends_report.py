@@ -1,5 +1,5 @@
 from typing import Any
-from report import Report
+from .report import Report
 
 
 class FriendsReport(Report):
