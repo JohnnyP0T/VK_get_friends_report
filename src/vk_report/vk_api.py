@@ -1,7 +1,7 @@
 import requests
 import sys
 
-from vk_report.parse_friends import *
+from src.vk_report.parse_friends import parse_friends
 
 
 class Vkapi:

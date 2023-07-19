@@ -15,3 +15,4 @@ class WriterCsvTsv:
                 writer.writerow({'first_name': person['first_name'], 'last_name': person['last_name'],
                                  'country': person['country'], 'city': person['city'],
                                  'birth_date': person['birth_date'], 'sex': person['sex']})
+
