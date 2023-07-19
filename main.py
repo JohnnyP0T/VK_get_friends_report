@@ -6,6 +6,7 @@ from vk_report.friends_report import FriendsReport
 from writer.csv_tsv_writer import WriterCsvTsv
 from writer.json_writer import WriterJson
 
+
 def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog='VK_get_friends_report',
