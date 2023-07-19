@@ -1,4 +1,5 @@
 import requests
+from .exceptions import VkApiException
 
 
 class VkApi:
@@ -16,8 +17,12 @@ class VkApi:
             'offset': 0
         }
         response = requests.get('https://api.vk.com/method/friends.get', params=params)
-        yield from response.json()['response']['items']
-        while len(response.json()['response']['items']) == 5000:
+        response_json = response.json()
+        if response_json.get('error'):
+            raise VkApiException(response_json['error']['error_msg'])
+        
+        yield from response_json['response']['items']
+        while len(response_json['response']['items']) == 5000:
             params['offset'] += 5000
             response = requests.get('https://api.vk.com/method/friends.get', params=params)
             yield from response.json()['response']['items']
