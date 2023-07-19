@@ -1,6 +1,7 @@
 import pytest
-from friends_report import FriendsReport
 from unittest.mock import Mock
+from .friends_report import FriendsReport
+
 
 @pytest.fixture
 def friends_report():
