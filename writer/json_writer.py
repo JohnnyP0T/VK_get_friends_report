@@ -1,7 +1,7 @@
 import json
 
 
-class WriterJson():
+class WriterJson:
     def __init__(self, indent: int = 4):
         self.indent = indent
 

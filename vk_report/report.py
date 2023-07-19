@@ -1,5 +1,5 @@
-from vk_api import VkApi
 from abc import ABC
+from .vk_api import VkApi
 
 
 class Report(ABC):
